@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 import os
+import time
 from pathlib import Path
 
 import numpy as np
@@ -36,14 +37,26 @@ def atomic_write_json(value, path):
         json.dump(value, handle, indent=2)
         handle.flush()
         os.fsync(handle.fileno())
-    os.replace(temporary, path)
+    atomic_replace(temporary, path)
 
 
 def atomic_write_csv(frame, path):
     path = Path(path)
     temporary = path.with_suffix(path.suffix + ".tmp")
     frame.to_csv(temporary, index=False)
-    os.replace(temporary, path)
+    atomic_replace(temporary, path)
+
+
+def atomic_replace(temporary, path, attempts=20, retry_seconds=0.25):
+    """Retry Windows replace calls briefly when OneDrive has a transient lock."""
+    for attempt in range(attempts):
+        try:
+            os.replace(temporary, path)
+            return
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(retry_seconds)
 
 
 def clean_comment_fingerprint(comments):
