@@ -1,6 +1,30 @@
-# Local run artifacts and resumable checkpoints (large, machine-specific data)
-results/
+# Track only lightweight, final reproducibility outputs.
+results/*
+!results/summary.json
+!results/aggregate_curve.csv
+!results/thread_metrics.csv
 
-# Python cache files
+# Large local run artifacts and resumable checkpoints.
+results/checkpoints/
+*.npy
+*.npz
+*.mmap
+*.tmp
+*.log
+tmp/
+
+# Downloaded data and model caches.
+.convokit/
+convokit_data/
+.cache/
+huggingface/
+
+# Local Python environments and secrets.
+.venv/
+venv/
+.env
+.env.*
+
+# Python cache files.
 __pycache__/
 *.py[cod]

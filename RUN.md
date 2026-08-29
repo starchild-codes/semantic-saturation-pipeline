@@ -9,7 +9,7 @@ py -m pip install -r requirements.txt
 For the first run—and every normal restart—run:
 
 ```powershell
-py .\analyze_semantic_saturation.py --corpus "C:\Users\anshi\.convokit\saved-corpora\reddit-corpus-small" --output results
+py .\analyze_semantic_saturation.py --corpus "PATH_PRINTED_BY_CONVOKIT" --output results
 ```
 
 The script selects CUDA automatically when an NVIDIA CUDA-capable GPU is available; otherwise it reports and uses CPU. Its startup output always includes `Selected device: CUDA` or `Selected device: CPU`. Override it with `--device cpu` or `--device cuda`.
@@ -21,11 +21,11 @@ Stop safely with Ctrl+C. At most the currently embedding chunk needs to be redon
 For a smaller machine, reduce the batch or checkpoint chunk size:
 
 ```powershell
-py .\analyze_semantic_saturation.py --corpus "C:\Users\anshi\.convokit\saved-corpora\reddit-corpus-small" --output results --batch-size 16 --chunk-size 1000
+py .\analyze_semantic_saturation.py --corpus "PATH_PRINTED_BY_CONVOKIT" --output results --batch-size 16 --chunk-size 1000
 ```
 
 To intentionally discard this output directory's saved checkpoints and recompute, add `--force-recompute`:
 
 ```powershell
-py .\analyze_semantic_saturation.py --corpus "C:\Users\anshi\.convokit\saved-corpora\reddit-corpus-small" --output results --force-recompute
+py .\analyze_semantic_saturation.py --corpus "PATH_PRINTED_BY_CONVOKIT" --output results --force-recompute
 ```

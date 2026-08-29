@@ -1,0 +1,21 @@
+{
+  "model": "sentence-transformers/all-mpnet-base-v2",
+  "minimum_usable_comments_per_thread": 20,
+  "n_eligible_threads": 3283,
+  "s80": {
+    "median": 0.6341463414634146,
+    "mean": 0.6298104122093485,
+    "q25": 0.5945945945945946,
+    "q75": 0.6666666666666666
+  },
+  "s90": {
+    "median": 0.8157894736842105,
+    "mean": 0.8140699418444654,
+    "q25": 0.7916666666666666,
+    "q75": 0.8421052631578947
+  },
+  "spearman_thread_length_vs_s80": {
+    "rho": -0.31775836975154576,
+    "p_value": 6.410375702136104e-78
+  }
+}
