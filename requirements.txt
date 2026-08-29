@@ -1,0 +1,6 @@
+convokit
+sentence-transformers
+numpy
+pandas
+scipy
+tqdm

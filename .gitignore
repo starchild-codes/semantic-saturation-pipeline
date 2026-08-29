@@ -1,0 +1,6 @@
+# Local run artifacts and resumable checkpoints (large, machine-specific data)
+results/
+
+# Python cache files
+__pycache__/
+*.py[cod]
