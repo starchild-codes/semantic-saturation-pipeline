@@ -357,6 +357,10 @@ def summarize(thread_df, curve_df):
         },
         "spearman_thread_length_vs_s80": {"rho": float(rho), "p_value": float(p_value)},
     }
+    # CSV round-tripping can create tiny representation variants of the shared
+    # 101-point grid; normalize only the output coordinate before aggregation.
+    curve_df = curve_df.copy()
+    curve_df["thread_position"] = curve_df["thread_position"].round(12)
     aggregate = curve_df.groupby("thread_position")["semantic_coverage"].agg(
         ["mean", "median", "count"]
     ).reset_index()
