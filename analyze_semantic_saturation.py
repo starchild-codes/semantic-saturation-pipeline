@@ -414,7 +414,9 @@ def main():
     atomic_write_json(summary, out / "summary.json")
     print("\n=== FROZEN PRIMARY RESULTS ===")
     print(json.dumps(summary, indent=2))
-    print(f"\nSaved results to: {out.resolve()}")
+    # Avoid a display-only UnicodeEncodeError in legacy Windows consoles when
+    # the absolute path contains non-ASCII characters.
+    print(f"\nSaved results to: {out}")
 
 
 if __name__ == "__main__":
